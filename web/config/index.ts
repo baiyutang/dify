@@ -293,3 +293,11 @@ else if (globalThis.document?.body?.getAttribute('data-public-loop-node-max-coun
   loopNodeMaxCount = Number.parseInt(globalThis.document.body.getAttribute('data-public-loop-node-max-count') as string)
 
 export const LOOP_NODE_MAX_COUNT = loopNodeMaxCount
+
+export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || ''
+
+export const withPrefix = (path: string) => {
+  if (!path || !BASE_PATH) return path
+  if (path.startsWith('http') || path.startsWith('//')) return path
+  return `${BASE_PATH}${path}`
+}

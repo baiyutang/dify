@@ -1,3 +1,4 @@
+import { withPrefix } from '@/config'
 import type { FC } from 'react'
 import React from 'react'
 
@@ -9,7 +10,7 @@ type IconProps = {
 
 const Icon: FC<IconProps> = ({ icon, className, ...other }) => {
   return (
-    <img src={icon} className={`h-3 w-3 ${className}`} {...other} alt="icon" />
+    <img src={withPrefix(icon)} className={`h-3 w-3 ${className}`} {...other} alt="icon" />
   )
 }
 

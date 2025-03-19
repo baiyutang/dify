@@ -28,6 +28,7 @@ import { NEED_REFRESH_APP_LIST_KEY } from '@/config'
 import { getRedirection } from '@/utils/app-redirection'
 import FullScreenModal from '@/app/components/base/fullscreen-modal'
 import useTheme from '@/hooks/use-theme'
+import { withPrefix } from '@/config'
 
 type CreateAppProps = {
   onSuccess: () => void
@@ -356,12 +357,15 @@ function AppScreenShot({ mode, show }: { mode: AppMode; show: boolean }) {
     'workflow': 'Workflow',
   }
   return <picture>
-    <source media="(resolution: 1x)" srcSet={`/screenshots/${theme}/${modeToImageMap[mode]}.png`} />
-    <source media="(resolution: 2x)" srcSet={`/screenshots/${theme}/${modeToImageMap[mode]}@2x.png`} />
-    <source media="(resolution: 3x)" srcSet={`/screenshots/${theme}/${modeToImageMap[mode]}@3x.png`} />
-    <Image className={show ? '' : 'hidden'}
-      src={`/screenshots/${theme}/${modeToImageMap[mode]}.png`}
+    <source media="(resolution: 1x)" srcSet={withPrefix(`/screenshots/${theme}/${modeToImageMap[mode]}.png`)} />
+    <source media="(resolution: 2x)" srcSet={withPrefix(`/screenshots/${theme}/${modeToImageMap[mode]}@2x.png`)} />
+    <source media="(resolution: 3x)" srcSet={withPrefix(`/screenshots/${theme}/${modeToImageMap[mode]}@3x.png`)} />
+    <Image
+      className={show ? '' : 'hidden'}
+      src={withPrefix(`/screenshots/${theme}/${modeToImageMap[mode]}.png`)}
       alt='App Screen Shot'
-      width={664} height={448} />
+      width={664}
+      height={448}
+    />
   </picture>
 }
